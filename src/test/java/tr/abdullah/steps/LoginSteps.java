@@ -40,6 +40,23 @@ public class LoginSteps extends BaseTest {
 
     @Step("Hata mesajinin geldigini kontrol et")
     public void checkErrorMessage() {
-        Assert.assertTrue(loginPage.checkErrorMessageBox());
+        Assert.assertTrue(loginPage.checkErrorMessage());
+    }
+
+    @Step("<string> gerekli uyarisini kontrol et")
+    public void checkEmptyField(String fieldName) {
+
+        if(fieldName.contains("Username")) {
+            Assert.assertTrue(loginPage.checkUsername());
+        }
+
+        else if(fieldName.contains("Password")) {
+            Assert.assertTrue(loginPage.checkPassword());
+        }
+    }
+
+    @Step("Kullanici adi alanina <string> yaz")
+    public void enterUsername(String text) {
+        loginPage.enterUsername(text);
     }
 }

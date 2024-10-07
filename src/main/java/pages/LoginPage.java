@@ -27,8 +27,17 @@ public class LoginPage extends AndroidActions {
     @AndroidFindBy(accessibility = "test-LOGIN")
     private WebElement loginBtn;
 
-    @AndroidFindBy(accessibility = "test-Error message")
-    private WebElement errorMessageBox;
+    @AndroidFindBy(xpath = "//android.widget.TextView[contains(@text, 'Sorry')]")
+    private WebElement errorMessage;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Username is required\"]")
+    private WebElement usernameRequired;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Password is required\"]")
+    private WebElement passwordRequired;
+
+    @AndroidFindBy(accessibility = "test-Username")
+    private WebElement username;
 
     public void setStandardUser() {
         standardUserTxt.click();
@@ -44,7 +53,19 @@ public class LoginPage extends AndroidActions {
         return new HomePage(driver);
     }
 
-    public boolean checkErrorMessageBox() {
-        return errorMessageBox.isDisplayed();
+    public boolean checkErrorMessage() {
+        return errorMessage.isDisplayed();
+    }
+
+    public boolean checkUsername() {
+        return usernameRequired.isDisplayed();
+    }
+
+    public boolean checkPassword() {
+        return passwordRequired.isDisplayed();
+    }
+
+    public void enterUsername(String text) {
+        username.sendKeys(text);
     }
 }
